@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学习笔记</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      .sidebar {
+        width: 300px;
+        background-color: #2c3e50;
+        color: white;
+        overflow-y: auto;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      }
+      .sidebar-header {
+        padding: 20px;
+        background-color: #34495e;
+        border-bottom: 1px solid #445566;
+      }
+
+      .sidebar-header h1 {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .sidebar-header h1:hover {
+        color: #3498db;
+      }
+
+      .sidebar-header p {
+        color: #bdc3c7;
+        font-size: 0.9em;
+      }
+
+      .file-list {
+        padding: 10px 0;
+      }
+
+      .file-item {
+        padding: 12px 20px;
+        cursor: pointer;
+        border-left: 4px solid transparent;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+      }
+
+      .file-item:hover {
+        background-color: #34495e;
+        border-left-color: #3498db;
+      }
+
+      .file-item.active {
+        background-color: #3498db;
+        border-left-color: #2980b9;
+      }
+
+      .module-item {
+        font-weight: 600;
+      }
+
+      .module-category {
+        padding: 10px 15px;
+        color: #bdc3c7;
+        font-size: 0.85em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+      }
+
+      .content-header {
+        padding: 20px 30px;
+        background-color: white;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .content-header h2 {
+        color: #2c3e50;
+        margin-bottom: 5px;
+      }
+
+      .content-header .breadcrumb {
+        color: #7f8c8d;
+        font-size: 0.9em;
+      }
+
+      .content-body {
+        flex: 1;
+        padding: 30px;
+        overflow-y: auto;
+        background-color: #fafafa;
+      }
+
+      .markdown-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        max-width: none;
+        line-height: 1.6;
+      }
+
+      .markdown-content h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+      }
+
+      .markdown-content h2 {
+        color: #34495e;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-left: 4px solid #3498db;
+        padding-left: 15px;
+      }
+
+      .markdown-content h3 {
+        color: #5d6d7e;
+        margin-top: 25px;
+        margin-bottom: 12px;
+      }
+
+      .markdown-content code {
+        background-color: #f8f9fa;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+        color: #e74c3c;
+      }
+
+      .markdown-content pre {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 15px 0;
+      }
+
+      .markdown-content pre code {
+        background: none;
+        color: inherit;
+        padding: 0;
+      }
+
+      .markdown-content ul,
+      .markdown-content ol {
+        margin: 15px 0;
+        padding-left: 30px;
+      }
+
+      .markdown-content li {
+        margin: 8px 0;
+      }
+
+      .markdown-content blockquote {
+        border-left: 4px solid #3498db;
+        margin: 20px 0;
+        padding: 15px 20px;
+        background-color: #f8f9fa;
+        font-style: italic;
+      }
+
+      .welcome-message {
+        text-align: center;
+        color: #7f8c8d;
+        padding: 50px 20px;
+      }
+
+      .welcome-message h2 {
+        margin-bottom: 15px;
+        color: #5d6d7e;
+      }
+
+      .loading {
+        text-align: center;
+        color: #7f8c8d;
+        padding: 50px 20px;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          height: auto;
+          max-height: 200px;
+        }
+
+        .content-body {
+          padding: 20px;
+        }
+
+        .markdown-content {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <h1 id="homeButton">📚 学习笔记</h1>
+          <p>笔记模块</p>
+        </div>
+        <div class="module-list" id="moduleList">
+          <!-- 模块列表将在这里动态生成 -->
+        </div>
+        <div class="file-list" id="fileList" style="display: none">
+          <!-- 文件列表将在这里动态生成 -->
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="content-header">
+          <h2 id="contentTitle">欢迎使用学习笔记</h2>
+          <div class="breadcrumb" id="breadcrumb">
+            请选择左侧的模块和笔记查看内容
+          </div>
+        </div>
+        <div class="content-body">
+          <div id="markdownContent" class="markdown-content">
+            <div class="welcome-message">
+              <h2>🚀 欢迎使用学习笔记</h2>
+              <p>请从左侧列表中选择一个模块和笔记开始阅读</p>
+              <p>当前可用模块：</p>
+              <ul
+                style="
+                  text-align: left;
+                  display: inline-block;
+                  margin-top: 20px;
+                "
+              >
+                <li>Linux - Linux相关笔记和命令</li>
+                <li>HTML - HTML学习笔记</li>
+                <li>其他 - 其他技术笔记</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // 学习笔记模块
+      const modules = [
+        {
+          id: "linux",
+          name: "Linux",
+          icon: "🐧",
+          description: "Linux相关笔记和命令",
+        },
+        {
+          id: "html",
+          name: "HTML",
+          icon: "📄",
+          description: "HTML学习笔记",
+        },
+        {
+          id: "others",
+          name: "其他",
+          icon: "🔧",
+          description: "其他技术笔记",
+        },
+        // 可以在这里添加更多模块
+      ]; // 模块内文件列表
+      const moduleFiles = {
+        linux: [
+          {
+            name: "systemd.md",
+            title: "systemctl 命令",
+            path: "src/linux/systemd.md",
+            icon: "⚙️",
+          },
+          {
+            name: "socat.md",
+            title: "socat 命令",
+            path: "src/linux/socat.md",
+            icon: "⚙️",
+          },
+          // 可以在这里添加更多Linux相关文件
+        ],
+        html: [
+          {
+            name: "day1.md",
+            title: "HTML 第1天笔记",
+            path: "src/html/day1.md",
+            icon: "📄",
+          },
+          {
+            name: "day2.md",
+            title: "HTML 第2天笔记",
+            path: "src/html/day2.md",
+            icon: "📄",
+          },
+          {
+            name: "day3.md",
+            title: "CSS 基础知识笔记",
+            path: "src/html/day3.md",
+            icon: "🎨",
+          },
+          {
+            name: "day4.md",
+            title: "CSS 高级知识笔记",
+            path: "src/html/day4.md",
+            icon: "🎨",
+          },
+          {
+            name: "day5.md",
+            title: "CSS 基础知识笔记 - 第5天",
+            path: "src/html/day5.md",
+            icon: "🎨",
+          },
+          // 可以在这里添加更多HTML相关文件
+        ],
+        others: [
+          {
+            name: "docker无法连接仓库解决办法.md",
+            title: "Docker无法连接仓库解决办法",
+            path: "src/others/docker无法连接仓库解决办法.md",
+            icon: "🐳",
+          },
+          // 可以在这里添加更多其他相关文件
+        ],
+        // 可以为其他模块添加文件
+      };
+      let currentModule = null;
+      let currentFile = null;
+
+      // 返回首页
+      function goHome() {
+        // 重置所有模块和文件项的激活状态
+        document
+          .querySelectorAll(".module-item, .file-item")
+          .forEach((item) => {
+            item.classList.remove("active");
+          });
+
+        // 显示模块列表，隐藏文件列表
+        document.getElementById("moduleList").style.display = "block";
+        document.getElementById("fileList").style.display = "none";
+
+        // 重置标题和面包屑
+        document.getElementById("contentTitle").textContent =
+          "欢迎使用学习笔记";
+        document.getElementById("breadcrumb").textContent =
+          "请选择左侧的模块和笔记查看内容";
+        // 显示欢迎页面
+        document.getElementById("markdownContent").innerHTML = `
+                <div class="welcome-message">
+                    <h2>🚀 欢迎使用学习笔记</h2>
+                    <p>请从左侧列表中选择一个模块和笔记开始阅读</p>
+                    <p>当前可用模块：</p>
+                    <ul style="text-align: left; display: inline-block; margin-top: 20px;">
+                        <li>Linux - Linux相关笔记和命令</li>
+                        <li>HTML - HTML学习笔记</li>
+                        <li>其他 - 其他技术笔记</li>
+                    </ul>
+                </div>
+            `;
+
+        // 清除当前状态
+        currentModule = null;
+        currentFile = null;
+
+        // 清除URL hash
+        if (window.location.hash) {
+          history.pushState(
+            "",
+            document.title,
+            window.location.pathname + window.location.search
+          );
+        }
+      } // 渲染模块列表
+      function renderModuleList() {
+        const moduleList = document.getElementById("moduleList");
+        moduleList.innerHTML = "";
+
+        modules.forEach((module) => {
+          const moduleItem = document.createElement("div");
+          moduleItem.className = "file-item module-item";
+          moduleItem.innerHTML = `
+                    <span class="icon">${module.icon}</span>
+                    <span class="name">${module.name}</span>
+                `;
+          moduleItem.addEventListener("click", () => loadModule(module));
+          moduleList.appendChild(moduleItem);
+        });
+      }
+
+      // 加载模块
+      function loadModule(module) {
+        // 更新UI状态
+        document.querySelectorAll(".module-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+        event.currentTarget.classList.add("active");
+
+        // 显示文件列表，隐藏模块列表
+        document.getElementById("moduleList").style.display = "none";
+        document.getElementById("fileList").style.display = "block";
+
+        // 更新标题和面包屑
+        document.getElementById(
+          "contentTitle"
+        ).textContent = `${module.name} 笔记`;
+        document.getElementById(
+          "breadcrumb"
+        ).textContent = `${module.name} / 请选择笔记`;
+
+        // 显示模块欢迎信息
+        document.getElementById("markdownContent").innerHTML = `
+                <div class="welcome-message">
+                    <h2>${module.icon} ${module.name} 模块</h2>
+                    <p>${module.description}</p>
+                    <p>请从左侧列表中选择一个笔记开始阅读</p>
+                    ${
+                      moduleFiles[module.id].length === 0
+                        ? "<p><i>此模块暂无笔记</i></p>"
+                        : ""
+                    }
+                </div>
+            `;
+
+        currentModule = module;
+        currentFile = null;
+
+        // 渲染模块中的文件列表
+        renderModuleFileList(module.id);
+      }
+
+      // 渲染指定模块的文件列表
+      function renderModuleFileList(moduleId) {
+        const fileList = document.getElementById("fileList");
+        fileList.innerHTML = "";
+
+        // 添加返回按钮
+        const backButton = document.createElement("div");
+        backButton.className = "file-item";
+        backButton.style.backgroundColor = "#34495e";
+        backButton.innerHTML = `
+                <span class="icon">⬅️</span>
+                <span class="name">返回模块列表</span>
+            `;
+        backButton.addEventListener("click", goHome);
+        fileList.appendChild(backButton);
+
+        // 添加文件列表
+        const files = moduleFiles[moduleId] || [];
+        files.forEach((file) => {
+          const fileItem = document.createElement("div");
+          fileItem.className = "file-item";
+          fileItem.innerHTML = `
+                    <span class="icon">${file.icon}</span>
+                    <span class="name">${file.title}</span>
+                `;
+          fileItem.addEventListener("click", () => loadFile(file, moduleId));
+          fileList.appendChild(fileItem);
+        });
+      } // 加载文件内容
+      async function loadFile(file, moduleId) {
+        try {
+          // 获取模块信息
+          const module = modules.find((m) => m.id === moduleId);
+          if (!module) {
+            throw new Error("模块不存在");
+          }
+
+          // 更新UI状态
+          document.querySelectorAll(".file-item").forEach((item) => {
+            item.classList.remove("active");
+          });
+          event.currentTarget.classList.add("active");
+
+          // 更新标题和面包屑
+          document.getElementById("contentTitle").textContent = file.title;
+          document.getElementById(
+            "breadcrumb"
+          ).textContent = `${module.name} / ${file.name}`;
+
+          // 显示加载状态
+          document.getElementById("markdownContent").innerHTML = `
+                    <div class="loading">
+                        <h2>📖 正在加载笔记...</h2>
+                        <p>请稍候</p>
+                    </div>
+                `;
+
+          // 获取文件内容
+          const response = await fetch(file.path);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const markdownText = await response.text();
+
+          // 解析并渲染Markdown
+          const htmlContent = marked.parse(markdownText);
+          document.getElementById("markdownContent").innerHTML = htmlContent;
+
+          currentFile = file;
+        } catch (error) {
+          console.error("Error loading file:", error);
+          document.getElementById("markdownContent").innerHTML = `
+                    <div class="welcome-message">
+                        <h2>❌ 加载失败</h2>
+                        <p>无法加载文件: ${file.name}</p>
+                        <p>错误信息: ${error.message}</p>
+                        <p><small>请确保文件存在且路径正确</small></p>
+                    </div>
+                `;
+        }
+      } // 初始化页面
+      function init() {
+        renderModuleList();
+
+        // 添加首页按钮点击事件
+        document.getElementById("homeButton").addEventListener("click", goHome);
+
+        // 如果URL中有hash，尝试加载对应文件
+        const hash = window.location.hash.substr(1);
+        if (hash) {
+          // 格式：模块ID/文件名
+          const parts = hash.split("/");
+          if (parts.length === 2) {
+            const moduleId = parts[0];
+            const fileName = parts[1];
+            const module = modules.find((m) => m.id === moduleId);
+            if (module) {
+              const file = moduleFiles[moduleId].find(
+                (f) => f.name === fileName
+              );
+              if (file) {
+                // 先加载模块，再加载文件
+                loadModule(module);
+                loadFile(file, moduleId);
+                return;
+              }
+            }
+          }
+
+          // 如果不是模块/文件格式，尝试只加载模块
+          const module = modules.find((m) => m.id === hash);
+          if (module) {
+            loadModule(module);
+          }
+        }
+      }
+
+      // 页面加载完成后初始化
+      document.addEventListener("DOMContentLoaded", init);
+
+      // 监听浏览器后退/前进按钮
+      window.addEventListener("hashchange", () => {
+        const hash = window.location.hash.substr(1);
+        if (!hash) {
+          goHome();
+          return;
+        }
+
+        // 尝试解析模块/文件格式
+        const parts = hash.split("/");
+        if (parts.length === 2) {
+          const moduleId = parts[0];
+          const fileName = parts[1];
+          const module = modules.find((m) => m.id === moduleId);
+          if (module && (!currentModule || currentModule.id !== moduleId)) {
+            loadModule(module);
+          }
+
+          const file = moduleFiles[moduleId]?.find((f) => f.name === fileName);
+          if (file && file !== currentFile) {
+            loadFile(file, moduleId);
+          }
+        } else {
+          // 只有模块
+          const module = modules.find((m) => m.id === hash);
+          if (module && (!currentModule || currentModule.id !== hash)) {
+            loadModule(module);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
