@@ -40,7 +40,7 @@ external_link:
   exclude: ""
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false # 为每篇文章创建一个同名目录来存放图片等资源
 marked:
   prependRoot: true
   postAsset: true
