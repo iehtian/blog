@@ -1,7 +1,10 @@
+## <!-- markdownlint-disable -->
+
 ---
-title: { { title } }
-date: { { date } }
-updated: { { date } }
+
+title: {{title}}
+date: {{ date }}
+updated: {{ date }}
 tags: []
 categories:
 keywords:
@@ -24,4 +27,5 @@ highlight_shrink: false
 aside: true
 abcjs: false
 noticeOutdate: false
+
 ---
