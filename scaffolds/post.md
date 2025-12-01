@@ -1,8 +1,5 @@
-## <!-- markdownlint-disable -->
-
 ---
-
-title: {{title}}
+title: {{ title }}
 date: {{ date }}
 updated: {{ date }}
 tags: []
@@ -27,5 +24,4 @@ highlight_shrink: false
 aside: true
 abcjs: false
 noticeOutdate: false
-
 ---
