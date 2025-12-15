@@ -258,7 +258,7 @@ footer:
   owner:
     enable: true
     since: 2025
-  custom_text: '<a href="https://beian.miit.gov.cn/#/Integrated/index"><span>备案号：豫ICP备2024069173号</span></a>'
+  custom_text: '<a href="https://beian.miit.gov.cn/#/Integrated/index" rel="noreferrer" target="_blank"><span>备案号：豫ICP备2024069173号</span></a> <br><img src="/img/备案图标.png" width="20" height="20" style="vertical-align: middle; margin-right: 4px;"> <a href="https://beian.mps.gov.cn/#/query/webSearch?code=41012202000388" rel="noreferrer" target="_blank">豫公网安备41012202000388号</a>'
   # Copyright of theme and framework
   copyright: true
 
