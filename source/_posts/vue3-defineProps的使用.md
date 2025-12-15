@@ -19,7 +19,7 @@ aside: true
 abcjs: false
 noticeOutdate: false
 date: 2025-12-11 22:55:16
-updated: 2025-12-11 23:37:40
+updated: 2025-12-15 21:56:29
 categories:
   - 前端
   - Vue
@@ -175,7 +175,7 @@ const handleToggle = () => emit('toggle', props.type === 'primary')
 
 - defineProps 是编译器宏，无需从 Vue 导入
 - 避免直接解构 props，使用 toRefs 保持响应性
-- 只能在 <script setup> 中使用，属于 Composition API 语法糖
+- 只能在 `<script setup>` 中使用，属于 Composition API 语法糖
 - props 为只读，修改需要 emit 事件或使用父组件数据源
 - TS 下优先使用类型参数 + withDefaults，提升可读性和提示
 - 校验失败或类型不匹配时，检查控制台警告并确认默认值、必填项
