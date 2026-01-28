@@ -1,5 +1,5 @@
 ---
-title: sql基本操作
+title: C++const对象
 tags: []
 comments: true
 toc: true
@@ -14,8 +14,8 @@ highlight_shrink: false
 aside: true
 abcjs: false
 noticeOutdate: false
-date: 2025-11-20 22:37:52
-updated: "2025-11-21 19:40:03"
+date: 2026-01-15 20:34:18
+updated: 2026-01-15 20:34:18
 categories:
 keywords:
 description:
@@ -25,9 +25,10 @@ copyright_author_href:
 copyright_url:
 copyright_info:
 ---
-
-## 查看建表时的 sql 语句
-
 ```
-SHOW CREATE TABLE table_name;
+非const对象 → 可以调用 const函数 ✓
+非const对象 → 可以调用 非const函数 ✓
+
+const对象 → 可以调用 const函数 ✓
+const对象 → 不能调用 非const函数 ✗
 ```
