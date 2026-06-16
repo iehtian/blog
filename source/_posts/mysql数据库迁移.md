@@ -26,7 +26,7 @@ categories:
 keywords: MySQL, Docker, 数据库迁移, mysqldump, 备份, 恢复
 description: 使用 mysqldump 将 MySQL 从旧 Docker 容器迁移到新容器的完整步骤、最佳实践与常见问题排查示例。
 top_img:
-cover:
+cover: https://picsum.photos/id/110/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:

@@ -1,7 +1,6 @@
 ---
 title: ST-Link 驱动下载与安装
-date:
-updated:
+date: 2026-02-02 23:34:25
 tags: [ST-Link, 驱动, 下载]
 comments: true
 toc: true
@@ -16,13 +15,12 @@ highlight_shrink: false
 aside: true
 abcjs: false
 noticeOutdate: false
-date: 2026-02-02 23:34:25
 categories:
   - 工具
 keywords: [ST-Link, 驱动, 安装]
 description: ST-Link 驱动官方下载与安装说明
 top_img:
-cover:
+cover: https://picsum.photos/id/113/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:

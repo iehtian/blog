@@ -19,7 +19,7 @@ categories: 嵌入式
 keywords: STM32, EXTI, 外部中断, 红外传感器, NVIC, HAL回调
 description: 将 STM32F103 红外对射传感器从 GPIO 轮询改为 EXTI 下降沿中断模式，详解中断链路、NVIC、__weak 回调机制及 EXTI 挂起寄存器清除原理。
 top_img:
-cover:
+cover: https://picsum.photos/id/114/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:

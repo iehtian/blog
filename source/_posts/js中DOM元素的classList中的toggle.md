@@ -20,7 +20,7 @@ categories: [前端基础]
 keywords: [classList, toggle, class]
 description: 讲解 classList.toggle 的用法、参数与常见场景（展开/折叠、开关态）。
 top_img:
-cover:
+cover: https://picsum.photos/id/108/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:

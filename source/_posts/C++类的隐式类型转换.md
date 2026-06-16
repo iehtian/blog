@@ -20,7 +20,7 @@ categories:
 keywords:
 description:
 top_img:
-cover:
+cover: https://picsum.photos/id/103/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:

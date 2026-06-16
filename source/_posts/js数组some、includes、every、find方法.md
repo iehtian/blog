@@ -20,7 +20,7 @@ categories: [前端基础]
 keywords: [some, every, find, includes, 数组查找, 判断]
 description: 精炼讲解 js 数组 some/every/find/includes：语法、常见用法、对比与易踩坑点，附示例便于快速上手。
 top_img:
-cover:
+cover: https://picsum.photos/id/107/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:

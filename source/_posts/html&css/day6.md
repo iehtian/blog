@@ -8,7 +8,7 @@ keywords:
 description: Flex布局（Flexible Box）
 top_img: 
 comments: true
-cover:
+cover: https://picsum.photos/id/125/800/450
 toc: true
 toc_number: true
 toc_style_simple: false

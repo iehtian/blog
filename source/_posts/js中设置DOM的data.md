@@ -20,7 +20,7 @@ categories: [前端基础]
 keywords: [dataset, data-*, DOM]
 description: 介绍 dataset 的读写方式、命名规则、查询与注意事项，附常见示例。
 top_img:
-cover:
+cover: https://picsum.photos/id/109/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:

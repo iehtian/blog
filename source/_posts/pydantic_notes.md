@@ -9,6 +9,7 @@ description: Pydantic 学习笔记，涵盖 BaseModel、Field、验证器、嵌�
 toc: true
 toc_number: true
 copyright: true
+cover: https://picsum.photos/id/112/800/450
 ---
 
 # Pydantic 学习笔记

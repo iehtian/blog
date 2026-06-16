@@ -18,6 +18,7 @@ date: 2026-05-26 23:50:00
 categories: [C++]
 keywords: C++, explicit, 隐式转换, 构造函数, 转换运算符, 拷贝初始化
 description: 介绍 C++ explicit 关键字的作用、用法及最佳实践
+cover: https://picsum.photos/id/104/800/450
 ---
 
 C++ 中的 `explicit` 关键字用于禁止构造函数和转换运算符的隐式转换。本文介绍它解决的问题、具体用法以及最佳实践。

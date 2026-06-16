@@ -21,7 +21,7 @@ categories:
 keywords: Element Plus, DatePicker, 时区, value-format, format, YYYY-MM-DD
 description: 使用 Element(Plus) DatePicker 选择日期时，因时区导致后端收到的日期偏移的问题与解决方案，推荐以纯日期字符串传输规避时区。
 top_img:
-cover:
+cover: https://picsum.photos/id/105/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:

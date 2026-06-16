@@ -64,16 +64,16 @@ avatar:
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img:
+default_top_img: https://picsum.photos/id/1015/1920/1080
 
 # The banner image of index page
-index_img:
+index_img: https://picsum.photos/id/1015/1920/1080
 
 # The banner image of archive page
-archive_img:
+archive_img: https://picsum.photos/id/1018/1920/1080
 
 # Note: tag page, not tags page
-tag_img:
+tag_img: https://picsum.photos/id/1019/1920/1080
 
 # The banner image of tag page, you can set the banner image for each tag
 # Format:
@@ -81,7 +81,7 @@ tag_img:
 tag_per_img:
 
 # Note: category page, not categories page
-category_img:
+category_img: https://picsum.photos/id/1036/1920/1080
 
 # The banner image of category page, you can set the banner image for each category
 # Format:
@@ -102,7 +102,16 @@ cover:
   archives_enable: true
   # When cover is not set, the default cover is displayed
   default_cover:
-    # - xxx.jpg
+    - https://picsum.photos/id/10/800/450
+    - https://picsum.photos/id/11/800/450
+    - https://picsum.photos/id/15/800/450
+    - https://picsum.photos/id/16/800/450
+    - https://picsum.photos/id/17/800/450
+    - https://picsum.photos/id/18/800/450
+    - https://picsum.photos/id/19/800/450
+    - https://picsum.photos/id/20/800/450
+    - https://picsum.photos/id/21/800/450
+    - https://picsum.photos/id/22/800/450
 
 # Replace Broken Images
 error_img:
@@ -288,7 +297,7 @@ aside:
       text: Follow Me
       link: https://github.com/iehtian
   card_announcement:
-    enable: true
+    enable: false
     content: This is my Blog
   card_recent_post:
     enable: true
@@ -738,23 +747,23 @@ site_verification:
 # Theme color for customize
 # Notice: color value must in double quotes like "#000" or may cause error!
 
-# theme_color:
-#   enable: true
-#   main: "#49B1F5"
-#   paginator: "#00c4b6"
-#   button_hover: "#FF7242"
-#   text_selection: "#00c4b6"
-#   link_color: "#99a9bf"
-#   meta_color: "#858585"
-#   hr_color: "#A4D8FA"
-#   code_foreground: "#F47466"
-#   code_background: "rgba(27, 31, 35, .05)"
-#   toc_color: "#00c4b6"
-#   blockquote_padding_color: "#49b1f5"
-#   blockquote_background_color: "#49b1f5"
-#   scrollbar_color: "#49b1f5"
-#   meta_theme_color_light: "ffffff"
-#   meta_theme_color_dark: "#0d0d0d"
+theme_color:
+  enable: true
+  main: "#FF7242"
+  paginator: "#00c4b6"
+  button_hover: "#FF7242"
+  text_selection: "#00c4b6"
+  link_color: "#FF7242"
+  meta_color: "#858585"
+  hr_color: "#A4D8FA"
+  code_foreground: "#F47466"
+  code_background: "rgba(27, 31, 35, .05)"
+  toc_color: "#FF7242"
+  blockquote_padding_color: "#FF7242"
+  blockquote_background_color: "#FF7242"
+  scrollbar_color: "#FF7242"
+  meta_theme_color_light: "ffffff"
+  meta_theme_color_dark: "#0d0d0d"
 
 # The user interface setting of category and tag page
 # Choose: index - same as Homepage UI / default - same as archives UI
@@ -775,7 +784,7 @@ mask:
 
 # Loading Animation
 preloader:
-  enable: false
+  enable: true
   # source
   # 1. fullpage-loading
   # 2. pace (progress bar)
@@ -791,26 +800,26 @@ display_mode: light
 
 # Configuration for beautifying the content of the article
 beautify:
-  enable: false
+  enable: true
   # Specify the field to beautify (site or post)
   field: post
   # Specify the icon to be used as a prefix for the title, such as '\f0c1'
-  title_prefix_icon:
+  title_prefix_icon: '\f0c1'
   # Specify the color of the title prefix icon, such as '#F47466'
-  title_prefix_icon_color:
+  title_prefix_icon_color: '#FF7242'
 
 # Global font settings
 # Don't modify the following settings unless you know how they work
 font:
   global_font_size:
   code_font_size:
-  font_family:
-  code_font_family:
+  font_family: '"LXGW WenKai","Noto Serif SC",sans-serif'
+  code_font_family: '"JetBrains Mono",monospace'
 
 # Font settings for the site title and site subtitle
 blog_title_font:
-  font_link:
-  font_family:
+  font_link: https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+  font_family: "LXGW WenKai"
 
 # The setting of divider icon
 hr_icon:
@@ -844,7 +853,7 @@ canvas_ribbon:
 
 # Fluttering Ribbon
 canvas_fluttering_ribbon:
-  enable: false
+  enable: true
   mobile: false
 
 # canvas_nest
@@ -891,7 +900,7 @@ clickShowText:
 # https://github.com/francoischalifour/medium-zoom
 # https://fancyapps.com/fancybox/
 # Leave it empty if you don't need lightbox
-lightbox:
+lightbox: fancybox
 
 # --------------------------------------
 # Tag Plugins settings
@@ -989,7 +998,7 @@ instantpage: false
 # Lazyload
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
-  enable: false
+  enable: true
   # Specify the field to use lazyload (site or post)
   field: site
   placeholder:
@@ -1076,7 +1085,7 @@ CDN:
     # fancybox:
     # fancybox_css:
     # fireworks:
-    # fontawesome:
+    fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css
     # gitalk:
     # gitalk_css:
     # giscus:

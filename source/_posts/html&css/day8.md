@@ -8,7 +8,7 @@ keywords:
 description: css
 top_img: 
 comments: true
-cover:
+cover: https://picsum.photos/id/126/800/450
 toc: true
 toc_number: true
 toc_style_simple: false

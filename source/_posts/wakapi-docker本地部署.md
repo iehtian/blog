@@ -10,7 +10,7 @@ toc_number: true
 copyright: true
 copyright_author: iehtian
 description: 使用 Docker Compose 在本地快速部署 Wakapi 并进行持久化与安全加固的完整指南
-cover:
+cover: https://picsum.photos/id/120/800/450
 ---
 
 # Wakapi Docker 本地部署指南

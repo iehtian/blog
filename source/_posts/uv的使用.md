@@ -10,7 +10,7 @@ toc_number: true
 copyright: true
 copyright_author: iehtian
 description: 使用 Astral 的超快 Python 包管理器 uv 的安装与常用命令速查，包括项目初始化、依赖管理、虚拟环境与运行命令
-cover:
+cover: https://picsum.photos/id/118/800/450
 ---
 
 # uv 使用命令指南

@@ -8,7 +8,7 @@ keywords:
 description: HTML 基础知识笔记 - 第4天
 top_img:
 comments:
-cover:
+cover: https://picsum.photos/id/124/800/450
 toc:
 toc_number:
 toc_style_simple:

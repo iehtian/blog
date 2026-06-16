@@ -67,6 +67,7 @@
 - 日期格式：`YYYY-MM-DD` 或 `YYYY-MM-DD HH:mm:ss`。
 - tags、categories 使用数组或单行规范格式，避免混用空格与缩进。
 - 需要根据内容补充tags、categories、description、keywords
+- 新增文章**必须**填写 `cover` 字段，使用在线图片 URL（推荐 [picsum.photos](https://picsum.photos)，格式：`https://picsum.photos/id/{唯一ID}/800/450`），确保每篇文章封面图不重复。禁止留空或使用本地路径。
 
 ## 9. 图与资源引用
 

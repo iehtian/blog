@@ -23,7 +23,7 @@ categories:
 keywords: ts, typescript, 变量, 声明
 description: 在已经熟悉 JavaScript 的前提下，快速回顾 TypeScript 中变量声明的主要差异和写法。
 top_img:
-cover:
+cover: https://picsum.photos/id/117/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:

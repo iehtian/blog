@@ -8,7 +8,7 @@ keywords:
 description: 本文演示在 Debian/Ubuntu 上通过 Postfix 使用 QQ SMTP 发送邮件的基础配置。
 top_img:
 comments: true
-cover:
+cover: https://picsum.photos/id/131/800/450
 toc: true
 toc_number: true
 toc_style_simple: false

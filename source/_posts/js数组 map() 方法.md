@@ -20,7 +20,7 @@ categories: [前端基础]
 keywords: [map, 数组遍历, 转换, ES6]
 description: 精炼讲解 js 数组 map()：语法、常见模式（基础转换、对象属性提取、数组解构、添加新属性、使用索引）、箭头函数要点、与其他数组方法的对比与技巧。示例简洁、结构清晰、逻辑顺畅。
 top_img:
-cover:
+cover: https://picsum.photos/id/106/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:

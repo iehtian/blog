@@ -30,7 +30,7 @@ keywords:
   - Composition API
 description: "Vue 3 中 defineProps 的定义、类型声明、默认值与常见注意事项总结，包含 TS 示例与调试技巧。"
 top_img:
-cover:
+cover: https://picsum.photos/id/119/800/450
 copyright_author_href:
 copyright_url:
 copyright_info:
