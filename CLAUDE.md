@@ -32,3 +32,21 @@ Follow [FORMAT_GUIDE.md](FORMAT_GUIDE.md) when editing or creating posts. Key ru
 - Headings: `#` for title, `##`/`###` for sections, no skipping levels
 - Front matter: keep existing fields, fill in `tags`, `categories`, `description`, `keywords` based on content
 - Dates: `YYYY-MM-DD` or `YYYY-MM-DD HH:mm:ss`
+
+## Python API Documentation
+
+This rule applies **both when answering questions in conversation and when writing post files**. Whenever the user asks about a Python class or method (e.g., from scikit-learn, pandas, numpy), describe it with the following structure:
+
+1. **Parameters** — list all parameters with:
+   - Name and type
+   - Whether it's required or optional
+   - Default value (if any)
+   - Acceptable values / optional values (e.g., `"auto"`, `"sqrt"`, `"log2"`, `int`, `float`, `None`)
+   - Brief explanation of what it does
+2. **Return value** — explain:
+   - Return type (e.g., `ndarray`, `DataFrame`, `self`)
+   - Shape or structure of the returned object
+   - Key attributes or methods available on the returned object (e.g., `.classes_`, `.feature_importances_`)
+3. **Example** — provide a minimal, runnable code snippet demonstrating the most common use case. Cover the "happy path" first; add edge cases only when they are common pitfalls.
+
+Use Chinese descriptions for parameters and return values (matching the blog's language), but keep code identifiers in English. Prefer table format for parameter lists when there are many parameters.
