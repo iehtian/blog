@@ -26,27 +26,7 @@ Always run `hexo clean && hexo generate` after modifying `_config.yml` or `_conf
 
 ## Content Formatting
 
-Follow [FORMAT_GUIDE.md](FORMAT_GUIDE.md) when editing or creating posts. Key rules:
-- Chinese punctuation in body text, spaces between Chinese and English
-- Code blocks must specify language (```bash, ```js, ```yaml, etc.)
-- Headings: `#` for title, `##`/`###` for sections, no skipping levels
-- Front matter: keep existing fields, fill in `tags`, `categories`, `description`, `keywords` based on content
-- Dates: `YYYY-MM-DD` or `YYYY-MM-DD HH:mm:ss`
-
-## Python API Documentation
-
-This rule applies **both when answering questions in conversation and when writing post files**. Whenever the user asks about a Python class or method (e.g., from scikit-learn, pandas, numpy), describe it with the following structure:
-
-1. **Parameters** — list all parameters with:
-   - Name and type
-   - Whether it's required or optional
-   - Default value (if any)
-   - Acceptable values / optional values (e.g., `"auto"`, `"sqrt"`, `"log2"`, `int`, `float`, `None`)
-   - Brief explanation of what it does
-2. **Return value** — explain:
-   - Return type (e.g., `ndarray`, `DataFrame`, `self`)
-   - Shape or structure of the returned object
-   - Key attributes or methods available on the returned object (e.g., `.classes_`, `.feature_importances_`)
-3. **Example** — provide a minimal, runnable code snippet demonstrating the most common use case. Cover the "happy path" first; add edge cases only when they are common pitfalls.
-
-Use Chinese descriptions for parameters and return values (matching the blog's language), but keep code identifiers in English. Prefer table format for parameter lists when there are many parameters.
+All formatting rules are in [FORMAT_GUIDE.md](FORMAT_GUIDE.md). Follow it when editing or creating posts. Key sections:
+- 标点与语言、标题层级、代码块规范 → §1–§10（基础格式）
+- 技术介绍类文章结构 → §11.1（五种类型自适应选择）
+- API/命令参考的参数描述规范 → §11.1 类型 1（参数表格 + 返回值 + 整合示例）
