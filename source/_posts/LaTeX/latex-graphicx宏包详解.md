@@ -1,7 +1,7 @@
 ---
 title: LaTeX graphicx 宏包详解
 date: 2026-06-24
-updated: 2026-06-24 23:20:55
+updated: 2026-06-25 00:17:12
 tags: [LaTeX, graphicx, 图片, 插图, 排版]
 categories: LaTeX
 comments: true
@@ -10,6 +10,7 @@ toc_number: true
 copyright: true
 copyright_author: iehtian
 description: 全面介绍 LaTeX graphicx 宏包的用法，包括 \includegraphics 的各类参数、图形路径设置、旋转缩放裁剪等实用技巧。
+keywords: LaTeX, graphicx, includegraphics, 插图, 图片, 缩放, 旋转, 裁剪
 cover: https://picsum.photos/id/26/800/450
 mathjax: false
 katex: false
@@ -17,49 +18,30 @@ katex: false
 
 # LaTeX `graphicx` 宏包详解
 
-## 1. 前言
+`graphicx` 是 LaTeX 插图的标准宏包，核心命令 `\includegraphics` 通过 `key=value` 参数控制图片的缩放、旋转、裁剪等效果。
 
-在 LaTeX 中插入图片几乎是最常见的需求之一，而 `graphicx` 宏包正是实现这一功能的标准工具。它提供了 `\includegraphics` 命令，支持丰富的参数来控制图片的缩放、旋转、裁剪等效果。本文系统梳理 `graphicx` 的常用功能与进阶用法，帮助你灵活地排版插图。
+## 1. 加载宏包
 
-## 2. 加载宏包
-
-在导言区通过 `\usepackage` 加载即可：
+在导言区加载：
 
 ```latex
-\usepackage{graphicx}   % 支持 graphicx 的所有功能
+\usepackage{graphicx}
 ```
 
-注意：LaTeX 还有一个旧版宏包叫 `graphics`（不带 x），语法更受限。`graphicx` 是其后继版本，支持 `key=value` 形式的可选参数，写法更直观，**推荐始终使用 `graphicx`**。
+注意：旧版 `graphics` 宏包语法受限，`graphicx` 支持 `key=value` 可选参数，**始终使用 `graphicx`**。
 
-```latex
-% graphics（旧版，不推荐）
-\includegraphics[width=0.5\textwidth]{example.png}
+## 2. 核心命令：`\includegraphics`
 
-% graphicx（推荐，同样写法兼容旧语法，且支持更多 key=value 选项）
-\includegraphics[width=0.5\textwidth, angle=90]{example.png}
-```
-
-## 3. 核心命令：`\includegraphics`
-
-### 3.1 基本语法
+### 2.1 基本语法
 
 ```latex
 \includegraphics[选项]{文件名}
+\includegraphics{photo.jpg}   % 不指定选项 → 按原始尺寸插入
 ```
 
-最简写法：
+- 超出页面宽度时用 `width`/`height`/`scale` 控制
 
-```latex
-\documentclass{article}
-\usepackage{graphicx}
-\begin{document}
-    \includegraphics{photo.jpg}
-\end{document}
-```
-
-LaTeX 会自动按图片原始尺寸插入。如果图片超出页面宽度，就需要通过选项来控制尺寸。
-
-### 3.2 缩放与尺寸控制
+### 2.2 缩放与尺寸控制
 
 | 参数 | 说明 | 示例 |
 |------|------|------|
@@ -72,68 +54,72 @@ LaTeX 会自动按图片原始尺寸插入。如果图片超出页面宽度，�
 只设 `width` 或只设 `height` 时，另一个维度会自动按比例缩放：
 
 ```latex
-% 宽度设为版心宽度的一半，高度自动计算
+% 只设 width → 高度自动按比例缩放
 \includegraphics[width=0.5\textwidth]{example.png}
 
-% 高度固定为 4cm，宽度自动计算
+% 只设 height → 宽度自动按比例缩放
 \includegraphics[height=4cm]{example.png}
-```
 
-同时设置 `width` 和 `height` 会改变图片的纵横比，可能导致图片拉伸变形。如需限定最大尺寸又不想变形，加上 `keepaspectratio`：
+% 等比缩放到版心宽度（常用）
+\includegraphics[width=\textwidth]{landscape.jpg}
 
-```latex
-% 图片不会超过 0.8 倍版心宽和 5cm 高，且保持比例不变
+% scale 按比例缩放
+\includegraphics[scale=0.8]{diagram.pdf}
+
+% 同时设 width 和 height → 拉伸图片；加 keepaspectratio 以"不超过"原则适配较小边界
 \includegraphics[width=0.8\textwidth, height=5cm, keepaspectratio]{example.png}
 ```
 
-提示：此选项不保证同时满足宽度和高度，而是以"不超过"为原则——最终尺寸会在保持比例的前提下适配其中较小的边界。
+双图并列是 width 控制的典型场景：
 
-### 3.3 旋转
+```latex
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{left.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{right.png}
+    \caption{两张图并列}
+    \label{fig:sidebyside}
+\end{figure}
+```
+
+### 2.3 旋转
 
 使用 `angle` 参数按角度旋转图片（正值表示逆时针）：
 
 ```latex
-% 逆时针旋转 90 度
+% angle 逆时针旋转；origin 指定旋转中心（c=中心（默认），tl=左上角，br=右下角等）
 \includegraphics[angle=90]{example.png}
-
-% 宽度设为 5cm 的同时旋转 45 度
 \includegraphics[width=5cm, angle=45]{example.png}
-```
-
-`origin` 参数指定旋转中心，可取值如 `c`（默认，中心）、`tl`（左上角）、`br`（右下角）等：
-
-```latex
 \includegraphics[angle=90, origin=tl]{example.png}
 ```
 
-### 3.4 裁剪（trim 与 clip）
+### 2.4 裁剪（trim 与 clip）
 
 `trim` 可以从图片四边裁掉指定的长度，语法为 `trim = 左 下 右 上`：
 
 ```latex
 % 从左、下、右、上分别裁掉 1cm、2cm、1cm、0.5cm
 \includegraphics[trim=1cm 2cm 1cm 0.5cm, clip]{example.png}
-```
-
-注意：**必须有 `clip` 才会真正裁掉指定区域**，否则 `trim` 只是相当于增加了负边距，裁剪掉的内容仍然可见。
-
-```latex
 % 只裁左边 3cm
 \includegraphics[trim=3cm 0 0 0, clip]{example.png}
 ```
 
-### 3.5 页面选择（多页 PDF）
+注意：**必须有 `clip` 才会真正裁掉指定区域**，否则 `trim` 只相当于增加负边距，裁剪掉的内容仍然可见。
+
+### 2.5 页面选择（多页 PDF）
 
 `page` 参数用于指定插入多页 PDF 的第几页：
 
 ```latex
 % 插入 PDF 文件的第 2 页
 \includegraphics[page=2, width=\textwidth]{document.pdf}
+
+% page + trim + clip：从 PDF 矢量图中截取局部区域
+\includegraphics[page=3, trim=2cm 5cm 2cm 3cm, clip, width=0.8\textwidth]{paper.pdf}
 ```
 
-结合 `trim` 和 `clip`，可以从 PDF 矢量图中选取需要的局部区域，非常实用。
-
-### 3.6 `bb`（BoundingBox，较少使用）
+### 2.6 `bb`（BoundingBox，较少使用）
 
 ```latex
 \includegraphics[bb=0 0 100 200]{example.eps}
@@ -141,11 +127,11 @@ LaTeX 会自动按图片原始尺寸插入。如果图片超出页面宽度，�
 
 用于显式指定 EPS 文件的 BoundingBox。大多数情况下 LaTeX 会自动读取，但在某些非标准 EPS 文件中可能需要手动设置。
 
-## 4. 图形路径配置
+## 3. 图形路径配置
 
-### 4.1 `\graphicspath`
+### 3.1 `\graphicspath`
 
-如果图片都放在某个子目录里，可以用 `\graphicspath` 统一指定搜索路径，避免每次写完整路径：
+`\graphicspath` 统一指定搜索路径，图片集中存放时无需每次写完整路径：
 
 ```latex
 \usepackage{graphicx}
@@ -154,15 +140,15 @@ LaTeX 会自动按图片原始尺寸插入。如果图片超出页面宽度，�
 
 注意：路径末尾的 `/` 必须保留，且每个路径用 `{}` 括起来。
 
-### 4.2 `\DeclareGraphicsExtensions`
+### 3.2 `\DeclareGraphicsExtensions`
 
-指定默认的文件扩展名，书写 `\includegraphics` 时就不用带扩展名了：
+指定默认文件扩展名，`\includegraphics` 无需带扩展名：
 
 ```latex
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 ```
 
-LaTeX 会按声明的顺序依次搜索匹配的文件。这在你手上有同一个图的 PDF 和 PNG 两个版本、想让引擎优先使用 PDF 时特别有用。
+LaTeX 按声明顺序依次搜索匹配文件。同一个图有 PDF 和 PNG 两个版本时，声明 `.pdf` 在前即可优先使用 PDF。
 
 ```latex
 \graphicspath{{images/}}
@@ -172,7 +158,7 @@ LaTeX 会按声明的顺序依次搜索匹配的文件。这在你手上有同�
 \includegraphics[width=5cm]{example}
 ```
 
-## 5. 支持的图片格式
+## 4. 支持的图片格式
 
 不同编译引擎支持的格式有所差异：
 
@@ -183,9 +169,9 @@ LaTeX 会按声明的顺序依次搜索匹配的文件。这在你手上有同�
 | **LuaLaTeX** | PDF、PNG、JPEG、EPS、BMP |
 | **LaTeX（DVI 模式）** | EPS |
 
-日常使用建议：**优先使用 PDF（矢量）或 PNG（位图）**，兼容性最好。如果用 XeLaTeX 或 LuaLaTeX 引擎编译，也可以直接插入 JPEG 照片。
+日常使用：**优先使用 PDF（矢量）或 PNG（位图）**，兼容性最好。
 
-## 6. `\includegraphics` 完整参数速查表
+## 5. `\includegraphics` 完整参数速查表
 
 以下按功能分类汇总 `\includegraphics` 支持的关键参数：
 
@@ -206,68 +192,17 @@ LaTeX 会按声明的顺序依次搜索匹配的文件。这在你手上有同�
 | 其他 | `ext` | 文件扩展名 | 指定扩展名 |
 | 其他 | `read` | 文件扩展名 | 指定读取文件的扩展名 |
 
-## 7. 草稿模式
+## 6. 草稿模式
 
-`draft` 选项会加快编译速度：图片不会被真正插入，只显示一个带文件名的框，方便在写作阶段快速迭代：
-
-```latex
-% 全局草稿模式：加载宏包时设置
-\usepackage[draft]{graphicx}
-
-% 局部覆盖：单张图片强制正常显示
-\includegraphics[draft=false]{example.png}
-```
-
-反过来，也可以在普通模式下对某张大图暂时使用 `draft` 以加速编译调试：
+`draft` 模式下图片不实际插入，只显示文件名框，加速编译：
 
 ```latex
-\includegraphics[draft]{huge-image.png}
+\usepackage[draft]{graphicx}            % 全局草稿模式
+\includegraphics[draft=false]{a.png}    % 单张强制正常显示
+\includegraphics[draft]{big.png}        % 单张开启草稿
 ```
 
-## 8. 常用场景示例
-
-### 8.1 等比缩放到版心宽度
-
-```latex
-\includegraphics[width=\textwidth]{landscape.jpg}
-```
-
-### 8.2 双图并列
-
-```latex
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.45\textwidth]{left.png}
-    \hfill
-    \includegraphics[width=0.45\textwidth]{right.png}
-    \caption{两张图并列}
-    \label{fig:sidebyside}
-\end{figure}
-```
-
-### 8.3 从 PDF 中截取子图
-
-```latex
-\includegraphics[page=3, trim=2cm 5cm 2cm 3cm, clip, width=0.8\textwidth]{paper.pdf}
-```
-
-### 8.4 为论文排版准备的高质量插图
-
-```latex
-% 统一使用 PDF 矢量图，缩放后字体大小与正文匹配
-\includegraphics[scale=0.8]{diagram.pdf}
-```
-
-## 9. 常见注意事项
-
-- **编译报错 "Unknown graphics extension"**：说明图片格式不被当前引擎支持。把 EPS 转成 PDF 或改用 XeLaTeX/LuaLaTeX 引擎。
-- **图片找不到**：确认 `\graphicspath` 路径末尾的 `/` 没有遗漏，或直接使用绝对路径调试。
-- **图片模糊**：检查是否插入了低分辨率位图。对于示意图和图表，优先使用 PDF/SVG 矢量格式，缩放不损失清晰度。
-- **`draft` 模式下所有图都不显示**：检查导言区 `\usepackage[draft]{graphicx}` 是否误设了全局 draft，可以通过局部 `draft=false` 覆盖。
-- **裁剪不生效**：使用 `trim` 后务必加上 `clip`，否则裁剪区域仍然可见。
-- **scale 与 width/height 混用**：虽然语法上合法，但 `scale` 会影响后续 `width`/`height` 的计算基准，容易造成混乱——建议一次只用一个方案。
-
-## 10. 小结
+## 7. 小结
 
 `graphicx` 是 LaTeX 插图的基础设施，核心命令就一个 `\includegraphics`，但参数组合丰富，几乎覆盖了所有插图场景：
 
