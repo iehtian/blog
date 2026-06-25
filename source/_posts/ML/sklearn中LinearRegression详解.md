@@ -1,38 +1,25 @@
 ---
 title: sklearn 中 LinearRegression 详解
 date: 2026-06-20
-updated: 2026-06-23 01:20:21
-tags: [sklearn, 机器学习, 线性回归, Python]
+updated: 2026-06-25 20:34:05
+tags: [sklearn, 机器学习, 线性回归, Python, LinearRegression, 最小二乘法]
 categories: 机器学习
-keywords: LinearRegression,sklearn,线性回归,最小二乘法,OLS,fit,predict,score,coef_,intercept_
-description: 深入解析 sklearn 中 LinearRegression 的每一个参数、属性与方法，配合完整示例和常见问题，彻底掌握线性回归在 sklearn 中的使用。
-top_img:
 comments: true
-cover: https://picsum.photos/id/220/800/450
 toc: true
 toc_number: true
-toc_style_simple: false
 copyright: true
 copyright_author: iehtian
-copyright_author_href:
-copyright_url:
-copyright_info:
-mathjax: false
+description: 深入解析 sklearn 中 LinearRegression 的每一个参数、属性与方法，配合完整示例和常见问题，彻底掌握线性回归在 sklearn 中的使用
+cover: https://picsum.photos/id/220/800/450
+keywords: LinearRegression,sklearn,线性回归,最小二乘法,OLS,fit,predict,score,coef_,intercept_
 katex: true
-aplayer: false
-highlight_shrink: false
-aside: true
-abcjs: false
-noticeOutdate: false
 ---
 
-## 前言
+# sklearn 中 LinearRegression 详解
 
-线性回归是机器学习中最基础也最经典的模型。在 sklearn 中，`LinearRegression` 类封装了**普通最小二乘法**（Ordinary Least Squares, OLS），一句话就能完成模型训练。
+`LinearRegression` 是 sklearn 中对**普通最小二乘法**（Ordinary Least Squares, OLS）的封装，一句话就能完成线性模型训练。
 
-但"简单"不代表不需要深入理解。它的四个参数分别控制什么？`fit` 背后发生了什么？`coef_` 和 `intercept_` 怎么解读？`score` 返回的 $R^2$ 到底是怎么算的？本文将逐一拆解。
-
-## 核心原理
+## 1. 核心原理
 
 `LinearRegression` 试图找到一组系数 $w = (w_1, w_2, \dots, w_p)$ 和一个截距 $b$，使得预测值 $\hat{y}$ 和真实值 $y$ 之间的均方误差最小：
 
@@ -42,7 +29,7 @@ $$
 
 sklearn 内部使用 `scipy.linalg.lstsq` 求解最小二乘问题，底层基于 LAPACK 驱动，计算的是最小范数解。
 
-## 参数详解
+## 2. 参数详解
 
 `LinearRegression` 的构造函数一共有四个参数：
 
@@ -69,7 +56,7 @@ model_positive = LinearRegression(positive=True)
 model_fast = LinearRegression(n_jobs=-1)                  # 使用所有可用核心
 ```
 
-## 属性详解
+## 3. 属性详解
 
 模型训练后（调用 `fit` 之后），以下属性被填充（以下划线结尾的属性表示从数据中学到的）：
 
@@ -91,7 +78,7 @@ print(model.rank_)                   # 2             → X 的秩
 print(model.n_features_in_)          # 2
 ```
 
-## 方法详解
+## 4. 方法详解
 
 ### fit
 
@@ -158,7 +145,7 @@ model.set_params(fit_intercept=False) # 修改参数，返回 self
 
 这两个方法在 `GridSearchCV` 自动化调参中起关键作用——`GridSearchCV` 通过 `get_params` 获取可调参数的键名列表，通过 `set_params` 为每一组候选参数重新配置模型。
 
-## 完整使用示例
+## 5. 完整使用示例
 
 ```python
 from sklearn.linear_model import LinearRegression
@@ -201,7 +188,7 @@ print(f"测试集 R²: {model.score(X_test, y_test):.4f}")
 
 一个系数为正，表示该特征对目标值有正向影响（特征值增大，预测值随之增大）；系数为负则反之。绝对值越大，影响越强——但前提是特征尺度可比（见常见问题 Q3）。
 
-## 常见问题
+## 6. 常见问题
 
 **Q1: 什么时候不用 `fit_intercept`？**
 
@@ -252,6 +239,6 @@ test_r2  = model.score(X_test, y_test)      # 测试集表现 → 判断泛化�
 
 训练集 $R^2$ 高而测试集 $R^2$ 低 → 可能过拟合；两者都低 → 可能欠拟合；两者都高且接近 → 理想状态。
 
-## 一句话总结
+## 7. 小结
 
 `LinearRegression` 是 sklearn 中最简单的回归模型——四个参数控制行为，`fit` 求解最小二乘，`predict` 输出预测值，`score` 返回 $R^2$。简单背后是可靠的数值计算和统一的接口设计，是学习 sklearn 的最佳起点。

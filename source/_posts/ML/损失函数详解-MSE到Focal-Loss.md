@@ -1,43 +1,32 @@
 ---
 title: 损失函数——MSE 与 MAE（回归模型基础）
 date: 2026-06-19
-updated: 2026-06-23 01:20:21
-tags: [机器学习, 损失函数, 数学, 回归]
+updated: 2026-06-25 20:34:05
+tags: [机器学习, 损失函数, 数学, 回归, MSE, MAE]
 categories: 机器学习
-keywords: 损失函数,loss function,MSE,MAE,均方误差,平均绝对误差,L2 Loss,L1 Loss,回归
-description: 深入讲解回归模型中两种最基础的损失函数——MSE（均方误差）和 MAE（平均绝对误差）的定义、梯度推导、几何直觉及适用场景对比。
-top_img:
 comments: true
 cover: https://picsum.photos/id/210/800/450
 toc: true
 toc_number: true
-toc_style_simple: false
 copyright: true
 copyright_author: iehtian
-copyright_author_href:
-copyright_url:
-copyright_info:
-mathjax: false
+description: 深入讲解回归模型中两种最基础的损失函数——MSE（均方误差）和 MAE（平均绝对误差）的定义、梯度推导、几何直觉及适用场景对比
+keywords: 损失函数,loss function,MSE,MAE,均方误差,平均绝对误差,L2 Loss,L1 Loss,回归
 katex: true
-aplayer: false
-highlight_shrink: false
-aside: true
-abcjs: false
-noticeOutdate: false
 ---
 
 # 损失函数——MSE 与 MAE（回归模型基础）
 
-## 1. 前言
+## 1. 定义与分类
 
-训练模型时，我们需要一个"考官"来评判预测结果的好坏——预测值和真实值差多少？差得越多，分数越低。这个"考官"就是**损失函数**（Loss Function）。
+**损失函数**（Loss Function）衡量模型预测值与真实值之间的差距，是训练过程中要最小化的目标。
 
-回归问题中最基础、最常用的两个损失函数是：
+回归问题中最基础的两个损失函数：
 
-- **MSE**（Mean Squared Error，均方误差）—— 对误差求平方
-- **MAE**（Mean Absolute Error，平均绝对误差）—— 对误差取绝对值
+- **MSE**（Mean Squared Error，均方误差）—— 平方误差求平均
+- **MAE**（Mean Absolute Error，平均绝对误差）—— 绝对值误差求平均
 
-它们简单，但背后藏着重要的设计思想。选 MSE 还是 MAE，会直接影响模型学到的东西。本文从公式、梯度、直觉和实战四个角度，把这两个损失函数讲透。
+选 MSE 还是 MAE 直接影响模型学到的内容。以下从公式、梯度、直觉和实战四个角度展开。
 
 ## 2. 基本概念
 

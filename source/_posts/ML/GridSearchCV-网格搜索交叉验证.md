@@ -1,7 +1,7 @@
 ---
 title: GridSearchCV——网格搜索与交叉验证详解
 date: 2026-06-19
-updated: 2026-06-19
+updated: 2026-06-25 20:34:05
 tags: [机器学习, 超参数调优, sklearn, 交叉验证, 网格搜索, GridSearchCV, 模型选择]
 categories: 机器学习
 comments: true
@@ -28,7 +28,7 @@ katex: true
 
 ## 2. 核心原理
 
-### 3.1 网格穷举
+### 2.1 网格穷举
 
 假设要调优 SVM 的两个参数：`C` 和 `gamma`：
 
@@ -52,7 +52,7 @@ param_grid = {
 
 GridSearchCV 会逐一训练并评估这 9 组参数。
 
-### 3.2 交叉验证评估
+### 2.2 交叉验证评估
 
 对每一组参数，使用 K 折交叉验证计算得分：
 
@@ -72,7 +72,7 @@ GridSearchCV 会逐一训练并评估这 9 组参数。
 最终得分 = mean(score₁, score₂, score₃, score₄, score₅)
 ```
 
-### 3.3 总训练次数
+### 2.3 总训练次数
 
 若参数组合数为 $N$，交叉验证折数为 $K$，则总训练次数为：
 
@@ -99,7 +99,7 @@ GridSearchCV(
 )
 ```
 
-### 4.1 `estimator` —— 基础模型
+### 3.1 `estimator` —— 基础模型
 
 传入一个 sklearn 兼容的 estimator 实例。GridSearchCV 内部会克隆该对象用于各参数组合的训练。
 
@@ -108,7 +108,7 @@ from sklearn.svm import SVC
 estimator = SVC(kernel='rbf')  # 固定 kernel，仅搜索 C 和 gamma
 ```
 
-### 4.2 `param_grid` —— 参数网格
+### 3.2 `param_grid` —— 参数网格
 
 支持两种形式：
 
@@ -135,7 +135,7 @@ param_grid = [
 
 第二种形式在搜索不同模型或不同参数子集时非常有用，避免了无意义的组合。
 
-### 4.3 `scoring` —— 评分指标
+### 3.3 `scoring` —— 评分指标
 
 指定用于评估和选择最优参数的指标。可以是字符串或自定义 scorer。
 
@@ -159,7 +159,7 @@ scoring = ['accuracy', 'f1_weighted', 'roc_auc_ovr']
 GridSearchCV(..., scoring=scoring, refit='f1_weighted')
 ```
 
-### 4.4 `cv` —— 交叉验证策略
+### 3.4 `cv` —— 交叉验证策略
 
 `cv` 参数不仅可以是整数，还可以传入各种 splitter：
 
@@ -176,7 +176,7 @@ cv = TimeSeriesSplit(n_splits=5)
 cv = GroupKFold(n_splits=5)
 ```
 
-### 4.5 `fit` —— 执行搜索与训练
+### 3.5 `fit` —— 执行搜索与训练
 
 `fit(X, y, **fit_params)` 是 GridSearchCV 的核心方法，调用它才会真正启动网格搜索。其内部流程为：
 
@@ -203,7 +203,7 @@ grid.fit(
 
 `fit()` 返回 `self`（即 GridSearchCV 实例本身），因此支持链式调用，也意味着调用后可以直接访问 `grid.best_params_` 等属性。
 
-### 4.6 `refit` —— 重训练
+### 3.6 `refit` —— 重训练
 
 默认 `refit=True`，在 `fit()` 的网格搜索阶段找到最优参数后，会用**全部训练数据**重新训练一次模型，得到 `best_estimator_`，可直接用于预测。
 

@@ -1,7 +1,7 @@
 ---
 title: accuracy_score——分类准确率详解
 date: 2026-06-19
-updated: 2026-06-19
+updated: 2026-06-25 20:34:05
 tags: [机器学习, 分类算法, sklearn, 评估指标, accuracy_score, 混淆矩阵, 模型评估]
 categories: 机器学习
 comments: true
@@ -17,23 +17,9 @@ katex: true
 
 # accuracy_score——分类准确率详解
 
-## 1. 前言
+## 1. 什么是准确率
 
-在分类任务中，模型训练完成后需要一个直观的指标来衡量"预测对了多少"。**准确率（Accuracy）**是最朴素、最常用的分类评估指标——预测正确的样本数占总样本数的比例。
-
-`accuracy_score` 是 sklearn 中计算准确率的标准函数，也是 [`KNeighborsClassifier`]({% post_link KNeighborsClassifier-详解 %}) 的 `score()`、`LogisticRegression.score()` 等分类器默认使用的评分方法。本文将深入讲解其用法、参数、计算原理及使用陷阱。
-
-## 2. 什么是准确率
-
-### 2.1 定义
-
-准确率定义为：**正确分类的样本数占总样本数的比例**。
-
-$$
-\text{Accuracy} = \frac{\text{正确预测的数量}}{\text{总样本数量}}
-$$
-
-用数学公式表达：
+**准确率（Accuracy）** 定义为正确分类的样本数占总样本数的比例。`accuracy_score` 是 sklearn 中计算准确率的标准函数，也是 `KNeighborsClassifier.score()`、`LogisticRegression.score()` 等分类器默认使用的评分方法。
 
 $$
 \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
@@ -46,7 +32,7 @@ $$
 - **FP（False Positive）**：真实为负类，预测为正类（误报）；
 - **FN（False Negative）**：真实为正类，预测为负类（漏报）。
 
-### 2.2 直观理解
+### 1.1 直观理解
 
 ```
 真实标签:  [0, 1, 1, 0, 1, 0, 0, 1, 1, 0]
@@ -57,7 +43,7 @@ $$
 准确率 = 8 / 10 = 0.8
 ```
 
-## 3. 函数签名与参数
+## 2. 函数签名与参数
 
 ```python
 from sklearn.metrics import accuracy_score
@@ -70,7 +56,7 @@ accuracy_score(
 )
 ```
 
-### 3.1 `y_true` 与 `y_pred` —— 真实与预测标签
+### 2.1 `y_true` 与 `y_pred` —— 真实与预测标签
 
 两个参数都是一维数组，可以是 Python list、numpy array 或 pandas Series，长度必须相同。
 
@@ -83,7 +69,7 @@ y_pred = [0, 1, 0, 0, 1]
 print(accuracy_score(y_true, y_pred))  # 0.8（第 3 个样本预测错误）
 ```
 
-### 3.2 `normalize` —— 控制返回格式
+### 2.2 `normalize` —— 控制返回格式
 
 | 值 | 返回 | 含义 |
 | --- | --- | --- |
@@ -106,7 +92,7 @@ correct_count = np.sum(np.array(y_true) == np.array(y_pred))
 print(correct_count)  # 4
 ```
 
-### 3.3 `sample_weight` —— 样本权重
+### 2.3 `sample_weight` —— 样本权重
 
 为每个样本指定不同的权重，用于调整不同样本在准确率计算中的贡献：
 
@@ -136,7 +122,7 @@ $$
 - **样本重要性差异**：某些样本的业务价值更高；
 - **时间衰减**：越近的样本权重越大。
 
-## 4. 与混淆矩阵的关系
+## 3. 与混淆矩阵的关系
 
 准确率可以从**混淆矩阵**直接推导。混淆矩阵的每个元素对应一个 TP/TN/FP/FN 计数：
 
@@ -166,7 +152,7 @@ print(accuracy_score(y_true, y_pred))   # 0.8（一致）
 
 `np.trace(cm)` 是混淆矩阵对角线之和（TP + TN），`np.sum(cm)` 是全部样本数。
 
-## 5. 基础实战
+## 4. 基础实战
 
 ```python
 from sklearn.datasets import load_iris
@@ -196,7 +182,7 @@ print((y_test == y_pred).mean())        # 手动计算
 
 注意：`knn.score(X_test, y_test)` 内部调用的是 `accuracy_score`，三者结果完全一致。
 
-## 6. 交叉验证中的准确率
+## 5. 交叉验证中的准确率
 
 在交叉验证中，`accuracy` 是最常用的评分指标之一：
 
@@ -215,11 +201,11 @@ print(f"平均准确率: {scores.mean():.4f} ± {scores.std():.4f}")
 
 sklearn 中 `scoring='accuracy'` 对应的内部 scorer 就是 `accuracy_score`。
 
-## 7. 准确率的陷阱——类别不平衡
+## 6. 准确率的陷阱——类别不平衡
 
 准确率最大的缺陷在于：**当类别严重不平衡时，高准确率不代表模型好**。
 
-### 7.1 一个极端的例子
+### 6.1 一个极端的例子
 
 ```python
 import numpy as np
@@ -238,7 +224,7 @@ print(accuracy_score(y_true, y_pred_all_negative))  # 0.99！
 
 模型什么都没学到，却拿到了 99% 的准确率——因为它"猜多数类就对了"。但实际问题中，漏掉欺诈交易的代价远高于误判正常交易。
 
-### 7.2 对比其他指标
+### 6.2 对比其他指标
 
 ```python
 from sklearn.metrics import precision_score, recall_score, f1_score
@@ -251,7 +237,7 @@ print(f"F1 分数:  {f1_score(y_true, y_pred_all_negative):.4f}")         # 0.0
 
 准确率高达 99%，但精确率、召回率、F1 全部为 0——这才是模型真实水平的反映。
 
-## 8. 何时该用、何时不该用准确率
+## 7. 何时该用、何时不该用准确率
 
 ### 适合使用准确率的场景
 
@@ -286,7 +272,7 @@ print(get_scorer_names())
 | F1 | `'f1'` / `'f1_macro'` | 精确率与召回率的调和平均 | 需要兼顾两者 |
 | ROC AUC | `'roc_auc'` | 排序能力 | 类别不均衡时的排序任务 |
 
-## 9. accuracy_score 源码解析
+## 8. accuracy_score 源码解析
 
 `accuracy_score` 的实现非常简洁，理解其源码有助于掌握它的本质：
 
@@ -309,7 +295,7 @@ def _accuracy_score(y_true, y_pred, normalize, sample_weight):
 
 核心就是 `y_true == y_pred` 然后取均值（或加权均值）。
 
-## 10. 手动实现
+## 9. 手动实现
 
 脱离 sklearn，一行代码即可实现基本的准确率计算：
 
@@ -333,7 +319,7 @@ print(my_accuracy_score(y_true, y_pred))        # 0.8
 print(accuracy_score(y_true, y_pred))           # 0.8
 ```
 
-## 11. 小结
+## 10. 小结
 
 - `accuracy_score` 是分类任务中最直观的评估指标，计算简单且易于理解；
 - 通过 `normalize` 参数可切换比例或计数模式，通过 `sample_weight` 可为不同样本赋予不同权重；

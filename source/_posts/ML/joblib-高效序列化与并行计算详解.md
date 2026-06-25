@@ -1,7 +1,7 @@
 ---
 title: joblib——高效序列化与并行计算详解
 date: 2026-06-19
-updated: 2026-06-19
+updated: 2026-06-25 20:34:05
 tags: [机器学习, 序列化, 并行计算, joblib, Python, sklearn, 缓存, 模型持久化]
 categories: 机器学习
 comments: true
@@ -10,7 +10,7 @@ toc_number: true
 copyright: true
 copyright_author: iehtian
 description: 深入讲解 joblib 三大核心功能：高效序列化（dump/load）、并行计算（Parallel/delayed）、透明磁盘缓存（Memory），附完整参数表与实战示例
-cover: https://picsum.photos/id/190/800/450
+cover: https://picsum.photos/id/192/800/450
 keywords: joblib,并行计算,序列化,模型持久化,Parallel,delayed,Memory,dump,load,sklearn,pickle,Python,numpy
 katex: false
 ---
