@@ -1,11 +1,11 @@
 ---
-title: CSS 笔记 - 第10天
+title: CSS 平面转换与颜色渐变
 date: 2025.06.14
 updated: 2025.06.14
-tags: 
-categories: 
-keywords:
-description: css
+tags: [CSS, transform, 渐变]
+categories: [CSS]
+keywords: CSS, transform, translate, rotate, scale, 平面转换, 线性渐变, 径向渐变
+description: CSS 平面转换与渐变速查：translate、rotate、scale 变换与 transform-origin，以及线性渐变与径向渐变。
 top_img: 
 comments: true
 cover: https://picsum.photos/id/127/800/450
@@ -25,7 +25,7 @@ aside: true
 abcjs: false
 noticeOutdate: false
 ---
-# CSS 基础知识笔记 - 第10天
+# CSS 平面转换与颜色渐变
 
 ## 平面转换-平移
 通过 CSS transform 属性和 translate() 函数实现元素的平面平移。

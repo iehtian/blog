@@ -1,11 +1,11 @@
 ---
-title: HTML 基础知识笔记 - 第3天
+title: CSS 选择器与字体、文本、背景样式
 date: 2025.06.06
 updated:
-tags:
-categories:
-keywords:
-description: HTML 基础知识笔记 - 第3天
+tags: [CSS, 选择器, 字体, 文本样式, 背景, 显示模式]
+categories: [CSS]
+keywords: CSS, 选择器, 字体样式 font, 文本样式 text, 背景样式 background, 显示模式 display
+description: CSS 基础样式速查：基础选择器、字体样式、文本样式、背景样式、元素显示模式，以及层叠性、继承性与优先级。
 top_img:
 comments:
 cover: https://picsum.photos/id/123/800/450
@@ -26,7 +26,7 @@ abcjs:
 noticeOutdate:
 ---
 
-# CSS 基础知识笔记 - 第3天
+# CSS 选择器与字体、文本、背景样式
 
 ## CSS 选择器
 

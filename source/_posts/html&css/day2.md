@@ -1,11 +1,11 @@
 ---
-title: HTML 基础知识笔记 - 第2天
+title: HTML 列表、表格、表单与字符实体
 date: 2025.06.05
 updated:
-tags:
-categories:
-keywords:
-description: HTML 基础知识笔记 - 第2天
+tags: [HTML, 列表, 表格, 表单, 字符实体]
+categories: [HTML]
+keywords: HTML, 列表 ul ol dl, 表格 table, 表单 form input, div span, 字符实体
+description: HTML 结构化标签速查：无序/有序/定义列表、表格与单元格合并、表单控件、div 与 span 以及常用字符实体。
 top_img:
 comments:
 cover: https://picsum.photos/id/122/800/450
@@ -26,7 +26,7 @@ abcjs:
 noticeOutdate:
 ---
 
-# HTML 基础知识笔记 - 第2天
+# HTML 列表、表格、表单与字符实体
 
 ## 列表
 

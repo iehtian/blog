@@ -1,11 +1,11 @@
 ---
-title: CSS 笔记 - 第8天
+title: CSS 定位、过渡与透明度
 date: 2025.06.12
 updated: 2025.06.12
-tags: 
-categories: 
-keywords:
-description: css
+tags: [CSS, 定位, 过渡, 透明度, 垂直对齐, 光标]
+categories: [CSS]
+keywords: CSS, 定位 position, z-index, CSS 精灵, vertical-align, 过渡 transition, 透明度 opacity, 光标 cursor
+description: CSS 定位与动效速查：相对/绝对/固定定位、z-index、CSS 精灵、vertical-align、过渡 transition、透明度 opacity 与光标类型 cursor。
 top_img: 
 comments: true
 cover: https://picsum.photos/id/126/800/450
@@ -25,7 +25,7 @@ aside: true
 abcjs: false
 noticeOutdate: false
 ---
-# CSS 基础知识笔记 - 第8天
+# CSS 定位、过渡与透明度
 
 ## 定位
 

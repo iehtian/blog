@@ -1,11 +1,11 @@
 ---
-title: HTML 基础知识笔记 - 第4天
+title: CSS 复合选择器、Emmet 缩写与背景属性
 date: 2025.06.06
 updated:
-tags:
-categories:
-keywords:
-description: HTML 基础知识笔记 - 第4天
+tags: [CSS, 复合选择器, 伪类, 属性选择器, Emmet, 背景]
+categories: [CSS]
+keywords: CSS, 复合选择器, 伪类选择器, 属性选择器, Emmet, 背景属性 background
+description: CSS 进阶速查：复合选择器（后代/子元素/并集/伪类/属性）、Emmet 缩写语法、CSS 背景属性详解与元素显示模式。
 top_img:
 comments:
 cover: https://picsum.photos/id/124/800/450
@@ -26,7 +26,7 @@ abcjs:
 noticeOutdate:
 ---
 
-# CSS 基础知识笔记 - 第4天
+# CSS 复合选择器、Emmet 缩写与背景属性
 
 ## CSS 选择器
 ### 复合选择器

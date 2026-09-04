@@ -1,11 +1,11 @@
 ---
-title: CSS 笔记 - 第6天
+title: CSS Flexbox 弹性布局详解
 date: 2025.06.11
 updated: 2025.06.11
-tags: 
-categories: 
-keywords:
-description: Flex布局（Flexible Box）
+tags: [CSS, Flexbox, 布局]
+categories: [CSS]
+keywords: CSS, Flexbox, 弹性布局, justify-content, align-items, flex-direction, flex
+description: Flex 弹性布局速查：主轴与侧轴对齐、flex-direction、弹性伸缩比、换行与多行对齐，附常见布局案例。
 top_img: 
 comments: true
 cover: https://picsum.photos/id/125/800/450
@@ -26,7 +26,7 @@ abcjs: false
 noticeOutdate: false
 ---
 
-# CSS 笔记 - 第6天
+# CSS Flexbox 弹性布局详解
 
 ## flex主轴与侧轴对齐方式
 

@@ -1,11 +1,11 @@
 ---
-title: CSS 笔记 - 第11天
+title: CSS 3D 空间转换与动画
 date: 2025.06.14
 updated: 2025.06.14
-tags: 
-categories: 
-keywords:
-description: css
+tags: [CSS, 3D变换, 动画, keyframes]
+categories: [CSS]
+keywords: CSS, 3D 转换, perspective, transform-style, translate3d, rotate3d, 动画 animation, keyframes
+description: CSS 3D 转换与动画速查：perspective 视距、3D 平移/旋转/缩放、transform-style、@keyframes 与 animation 属性、走马灯与精灵动画。
 top_img: 
 comments: true
 cover: https://picsum.photos/id/128/800/450
@@ -25,7 +25,7 @@ aside: true
 abcjs: false
 noticeOutdate: false
 ---
-# CSS 基础知识笔记 - 第11天
+# CSS 3D 空间转换与动画
 
 ## 空间转换-视距
 在进行 3D 转换时，`perspective` 属性用于定义观察者与 z=0 平面之间的距离。它能让 3D 转换看起来更真实，具有近大远小的效果。

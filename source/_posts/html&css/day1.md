@@ -1,11 +1,11 @@
 ---
-title: HTML 基础知识笔记 - 第1天
+title: HTML 常用标签：标题、段落、图像、链接与音视频
 date: 2025.06.05
 updated:
-tags:
-categories:
-keywords:
-description: HTML 基础知识笔记 - 第1天
+tags: [HTML, 标题, 段落, 图像, 超链接, 音视频]
+categories: [HTML]
+keywords: HTML, 标题, 段落, 图像 img, 超链接 a, 音频 audio, 视频 video
+description: HTML 基础标签速查：标题、段落、换行、水平线、文本格式化、图像、超链接以及音频与视频标签的用法和属性。
 top_img:
 comments:
 cover: https://picsum.photos/id/121/800/450
@@ -26,7 +26,7 @@ abcjs:
 noticeOutdate:
 ---
 
-# HTML 基础知识笔记 - 第1天
+# HTML 常用标签：标题、段落、图像、链接与音视频
 
 ## 标题和段落
 

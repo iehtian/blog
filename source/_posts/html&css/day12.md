@@ -1,11 +1,11 @@
 ---
-title: CSS 笔记 - 第12天
+title: CSS 移动端适配：媒体查询、rem 与 vw/vh
 date: 2025.06.14
 updated: 2025.06.14
-tags: 
-categories: 
-keywords:
-description: css
+tags: [CSS, 移动端适配, 媒体查询, rem, 响应式]
+categories: [CSS]
+keywords: CSS, 移动端适配, 响应式, 媒体查询 media query, rem, vw, vh
+description: 移动端适配方案速查：媒体查询 @media 与常用断点、rem 等比例缩放、vw/vh 视口单位及三种方案对比。
 top_img: 
 comments: true
 cover: https://picsum.photos/id/129/800/450
@@ -25,7 +25,7 @@ aside: true
 abcjs: false
 noticeOutdate: false
 ---
-# CSS 基础知识笔记 - 第12天
+# CSS 移动端适配：媒体查询、rem 与 vw/vh
 
 ## 移动端适配
 移动端适配的目标是让网页在不同尺寸的移动设备上都能良好显示，提供优秀的用户体验。主要方法包括响应式设计、弹性布局和字体大小的动态调整等。
